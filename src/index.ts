@@ -1,20 +1,22 @@
+// Lista dei mesi. Non toccare
 const monthNames = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
-
+// Oggi, serve per sapere che giorno è 
 let today = new Date();
 let selectedMonth = today.getMonth();
 let selectedYear = today.getFullYear();
 
-
-
+// Funzione per sapere quanti giorni ha un mese
 function daysInMonth(month: number, year: number): number {
     return new Date(year, month + 1, 0).getDate();
 }
 
+// Renderizza il calendario. bruttino ma va
 function renderCalendar(month: number, year: number) {
+    // Prendo gli elementi dal DOM
     const monthElem = document.getElementById('month')!;
     const yearElem = document.getElementById('year')!;
     const tbody = document.getElementById('calendar-body')!;
@@ -22,10 +24,11 @@ function renderCalendar(month: number, year: number) {
     yearElem.textContent = year.toString();
     tbody.innerHTML = '';
 
+    //bruttino
     const firstDay = new Date(year, month, 1).getDay();
     const numDays = daysInMonth(month, year);
 
-    // Previous and next month info
+    // Info sui mesi prima e dopo
     const prevMonth = (month === 0) ? 11 : month - 1;
     const prevYear = (month === 0) ? year - 1 : year;
     const nextMonth = (month === 11) ? 0 : month + 1;
@@ -34,9 +37,10 @@ function renderCalendar(month: number, year: number) {
 
     let day = 1;
     let nextDay = 1;
-    let started = false;
+    let started = false; // Non serve a niente per ora
 
-    for (let i = 0; i < 6; i++) { // 6 weeks
+    
+    for (let i = 0; i < 6; i++) {// 6 settimane
         let row = document.createElement('tr');
         for (let j = 0; j < 7; j++) {
             let cell = document.createElement('td');
@@ -45,7 +49,7 @@ function renderCalendar(month: number, year: number) {
             let icon = document.createElement('span');
             icon.className = 'emotion-icon';
 
-            // Days from previous month (invisible)
+            // Giorni del mese precedente
             if (i === 0 && j < firstDay) {
                 btn.classList.add('inactive');
                 btn.id = `prev-${prevYear}-${prevMonth+1}-${prevMonthDays - firstDay + j + 1}`;
@@ -53,10 +57,11 @@ function renderCalendar(month: number, year: number) {
                 cell.appendChild(btn);
                 cell.appendChild(icon);
             }
-            // Days of current month
+            // Giorni del mese corrente
             else if (day <= numDays) {
                 btn.textContent = day.toString();
                 btn.id = `day-${year}-${month+1}-${day}`;
+                // mhanz
                 if (
                     day === today.getDate() &&
                     month === today.getMonth() &&
@@ -65,18 +70,19 @@ function renderCalendar(month: number, year: number) {
                     btn.classList.add('today');
                 }
                 btn.onclick = () => {
-                    // handle day click
+                    //sta parte fatta dal ai non so bene che cazzo faccia
                 };
                 cell.appendChild(btn);
                 cell.appendChild(icon);
                 day++;
             }
-            // Days from next month (visible, clicking changes month)
+            // spoiler mese successiovo
             else {
                 btn.textContent = nextDay.toString();
                 btn.id = `next-${nextYear}-${nextMonth+1}-${nextDay}`;
                 btn.classList.add('other-month');
                 btn.onclick = () => {
+                    // mese changer
                     selectedMonth = nextMonth;
                     selectedYear = nextYear;
                     renderCalendar(selectedMonth, selectedYear);
@@ -88,10 +94,12 @@ function renderCalendar(month: number, year: number) {
             row.appendChild(cell);
         }
         tbody.appendChild(row);
+        // se giorni finiti esce
         if (day > numDays && nextDay > 7) break;
     }
 }
 
+// Cambia il tema. belli questi vado orgoglioso
 function setTheme(theme: number) {
     const root = document.documentElement;
     if (theme === 1) {
@@ -110,8 +118,17 @@ function setTheme(theme: number) {
         root.style.setProperty('--theme-text', '#F6C794');
         root.style.setProperty('--theme-text-important', '#FFF6B3');
     }
+    else if (theme===4)//richiesto da un mio amico
+    {
+        root.style.setProperty('--theme-bg', 'red');
+        root.style.setProperty('--theme-accent', 'red');
+        root.style.setProperty('--theme-text', 'red');
+        root.style.setProperty('--theme-text-important', 'red');
+    
+    }
 }
 
+// rifugiati nel passato dato che da ora in avanti puo solo peggiorare
 (document.getElementById('prevMonthBtn') as HTMLButtonElement).onclick = () => {
     if (selectedMonth === 0) {
         selectedMonth = 11;
@@ -121,6 +138,8 @@ function setTheme(theme: number) {
     }
     renderCalendar(selectedMonth, selectedYear);
 };
+
+// rifugiati nel futuro perche il presente lo stai rovinando
 (document.getElementById('nextMonthBtn') as HTMLButtonElement).onclick = () => {
     if (selectedMonth === 11) {
         selectedMonth = 0;
@@ -131,13 +150,13 @@ function setTheme(theme: number) {
     renderCalendar(selectedMonth, selectedYear);
 };
 
-window.onload = () => {
+window.onload = () => { //starta quando carica pagina, non capisco perche necessario ma altrimenti non va
     renderCalendar(selectedMonth, selectedYear);
-    const themeSwitcher = document.getElementById('theme-switcher') as HTMLSelectElement;
+    const themeSwitcher = document.getElementById('theme-switcher') as HTMLSelectElement; //non so cosa sia
     if (themeSwitcher) {
         themeSwitcher.addEventListener('change', (e) => {
             setTheme(Number(themeSwitcher.value));
         });
     }
-    setTheme(1); // Default theme
+    setTheme(1); // Tema di default, quello piu carino e messo meglio
 };
