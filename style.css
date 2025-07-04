@@ -1,0 +1,119 @@
+:root {
+    --theme-bg: #FFF7D1;
+    --theme-accent: #8B5DFF;
+    --theme-text: #6A42C2;
+    --theme-text-important: #563A9C;
+}
+
+body {
+    background: var(--theme-bg);
+    color: var(--theme-text);
+}
+
+.header h1,
+.header p {
+    color: var(--theme-text-important);
+}
+
+.menu {
+    background-color: var(--theme-accent);
+}
+
+.menu button {
+    color: var(--theme-bg);
+    background: var(--theme-accent);
+    border: none;
+    font-size: large;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.menu button:hover {
+    background: var(--theme-text-important);
+}
+
+.month h2,
+#year {
+    color: var(--theme-text-important);
+}
+
+.day-btn {
+    background: var(--theme-bg);
+    color: var(--theme-text);
+    border: 1px solid var(--theme-accent);
+}
+
+.day-btn.today {
+    outline: 2px solid yellow;
+}
+
+.day-btn.other-month {
+    opacity: 0.4;
+}
+
+.day-btn.inactive {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+#calendar-table th, #calendar-table td {
+    text-align: center;
+    width: 40px;
+    height: 50px;
+    padding: 0;
+}
+.day-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: #eee;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+}
+.day-btn.today {
+    outline: 2px solid yellow;
+}
+.day-btn.inactive {
+    opacity: 0;
+    pointer-events: none;
+}
+.day-btn.other-month {
+    opacity: 0.4;
+}
+.emotion-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 2px auto 0 auto;
+    border-radius: 50%;
+    background: transparent;
+    visibility: hidden;
+}
+
+/* Theme 1 */
+.emotion-icon.theme1-1 { background: #FFF7D1; visibility: visible; }
+.emotion-icon.theme1-2 { background: #8B5DFF; visibility: visible; }
+.emotion-icon.theme1-3 { background: #6A42C2; visibility: visible; }
+.emotion-icon.theme1-4 { background: #563A9C; visibility: visible; }
+
+/* Theme 2 */
+.emotion-icon.theme2-1 { background: #213448; visibility: visible; }
+.emotion-icon.theme2-2 { background: #547792; visibility: visible; }
+.emotion-icon.theme2-3 { background: #94B4C1; visibility: visible; }
+.emotion-icon.theme2-4 { background: #ECEFCA; visibility: visible; }
+
+/* Theme 3 */
+.emotion-icon.theme3-1 { background: #155E95; visibility: visible; }
+.emotion-icon.theme3-2 { background: #6A80B9; visibility: visible; }
+.emotion-icon.theme3-3 { background: #F6C794; visibility: visible; }
+.emotion-icon.theme3-4 { background: #FFF6B3; visibility: visible; }

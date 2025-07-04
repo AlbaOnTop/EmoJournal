@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Emotion Calendar</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Emotion Calendar</h1>
+        <p>Fill it as u feel!</p>
+    </div>
+    <div class="menu">
+        <button class="Entry_btn">entry</button>
+        <button class="load_btn">load</button>
+        <button class="save_btn">save</button>
+        <select id="theme-switcher" style="margin-left:2em;">
+            <option value="1">Theme 1</option>
+            <option value="2">Theme 2</option>
+            <option value="3">Theme 3</option>
+        </select>
+    </div>
+    <div class="content">
+        <div class="calendar">
+            <div class="calendar-header month">
+                <button class="prev_month" id="prevMonthBtn">Prev</button>
+                <h2 id="month">January</h2>
+                <span id="year">2025</span>
+                <button class="next_month" id="nextMonthBtn">Next</button>
+            </div>
+            <table id="calendar-table">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody id="calendar-body">
+                    <!-- Days will be rendered here by TypeScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="./dist/index.js"></script>
+</body>
+</html>
