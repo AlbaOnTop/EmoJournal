@@ -44,6 +44,7 @@ function renderCalendar(month, year) {
             // Giorni del mese precedente
             if (i === 0 && j < firstDay) {
                 btn.classList.add('inactive');
+                
                 btn.id = `prev-${prevYear}-${prevMonth + 1}-${prevMonthDays - firstDay + j + 1}`;
                 btn.tabIndex = -1;
                 cell.appendChild(btn);

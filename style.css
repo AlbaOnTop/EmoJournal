@@ -14,7 +14,10 @@ body {
 .header p {
     color: var(--theme-text-important);
 }
-
+.header {
+    text-align: center;
+    margin: 20px 0;
+}
 .menu {
     background-color: var(--theme-accent);
 }
